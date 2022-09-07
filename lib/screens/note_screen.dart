@@ -12,38 +12,40 @@ class NoteScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.fromLTRB(15, 40, 10, 15),
         child: SafeArea(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    size: 30,
+            child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      size: 30,
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: Text(
-                    title,
-                    style: mainTitleStyle,
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: mainTitleStyle,
+                    ),
                   ),
-                ),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
-              ],
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            SelectableText(
-              descritpion,
-              style: mainDescriptionStyle,
-            ),
-          ],
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+                ],
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              SelectableText(
+                descritpion,
+                style: mainDescriptionStyle,
+              ),
+            ],
+          ),
         )),
       ),
     );

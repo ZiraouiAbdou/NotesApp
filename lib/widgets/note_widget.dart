@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/models/note.dart';
 import 'package:notes_app/provider.dart';
 import 'package:notes_app/screens/note_screen.dart';
 import 'package:notes_app/utils/styles.dart';
 import 'package:provider/provider.dart';
 
 class NoteWidget extends StatelessWidget {
-  String title, description;
-  int noteNumber;
+  // String title, description;
+  // int noteNumber;
   bool isLong;
+  Note currentNote;
   var tapPosition;
-  NoteWidget(
-      {Key? key,
-      required this.title,
-      required this.description,
-      required this.noteNumber,
-      required this.isLong})
+  NoteWidget({Key? key, required this.currentNote, required this.isLong})
       : super(key: key);
 
   @override
@@ -25,7 +22,9 @@ class NoteWidget extends StatelessWidget {
         return GestureDetector(
           onTap: (() {
             Navigator.push(context, MaterialPageRoute(builder: ((context) {
-              return NoteScreen(title: title, descritpion: description);
+              return NoteScreen(
+                  title: currentNote.title,
+                  descritpion: currentNote.description);
             })));
           }),
           onTapDown: ((details) {
@@ -42,7 +41,7 @@ class NoteWidget extends StatelessWidget {
               ),
               items: [
                 PopupMenuItem(
-                    value: noteNumber,
+                    value: currentNote.noteNumber,
                     child: const Text(
                       "Delete",
                       style: TextStyle(fontSize: 20),
@@ -50,7 +49,7 @@ class NoteWidget extends StatelessWidget {
               ],
             ).then((value) {
               if (value == null) return;
-              data.deleteNote(noteNumber - 1);
+              data.deleteNote(currentNote.noteNumber - 1);
             });
           }),
           child: Container(
@@ -73,13 +72,13 @@ class NoteWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        title,
+                        currentNote.title,
                         style: titleStyle,
                         maxLines: 2,
                       ),
                     ),
                     Text(
-                      "$noteNumber",
+                      "${currentNote.noteNumber}",
                       style: counterStyle,
                     ),
                   ],
@@ -88,7 +87,7 @@ class NoteWidget extends StatelessWidget {
                   height: 5,
                 ),
                 Text(
-                  description,
+                  currentNote.description,
                   maxLines: isLong ? 8 : 5,
                   style: descriptionStyle,
                 ),
