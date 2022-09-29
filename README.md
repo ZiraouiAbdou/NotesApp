@@ -13,5 +13,6 @@ View your note
 ## Video:
 
 
-Uploading note_Trim.mp4…
+
+https://user-images.githubusercontent.com/108340809/193045051-8d1e8e6f-c38e-466b-b398-7ce1986d98b9.mp4
 
