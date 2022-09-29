@@ -45,8 +45,6 @@ class MainPage extends StatelessWidget {
                       //checking the container position to adjust the max lines of
                       //each container to avoid overflow
                       isLong: (index % 4 == 0 || index % 4 == 3),
-                      // another way to do it using a notedata method:
-                      // isLong: data.adjuster(index),
                     );
                   }, childCount: data.notes.length),
                 );

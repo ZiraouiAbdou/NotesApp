@@ -18,7 +18,7 @@ TextStyle mainDescriptionStyle = const TextStyle(
 );
 
 TextStyle addNoteStyle = const TextStyle(
-    color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30);
+    color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20);
 
 TextStyle dateStyle = const TextStyle(
     color: Colors.red, fontWeight: FontWeight.bold, fontSize: 20);

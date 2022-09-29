@@ -104,7 +104,7 @@ class AddNoteScreen extends StatelessWidget {
                       padding: EdgeInsets.all(15.0),
                       child: Text("Choose Date",
                           style: TextStyle(
-                              color: AppColors.blueColor, fontSize: 25)),
+                              color: AppColors.blueColor, fontSize: 20)),
                     ),
                   ),
                   const SizedBox(

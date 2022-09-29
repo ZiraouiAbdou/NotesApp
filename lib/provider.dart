@@ -11,30 +11,24 @@ class NoteData extends ChangeNotifier {
             "lorem ipsum dsf lorem ipsum lorem ipsum lorem ipsum dsf lorem ipsum lorem ipsum lorem ipsum dsf lorem ipsum lorem ipsum lorem ipsum dsf lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum ",
         noteNumber: 1),
     Note(
-        date: DateTime.now(),
+        date: DateTime(2022, 10, 5),
         title: "Note",
         description:
             "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum ",
         noteNumber: 2),
     Note(
-        date: DateTime.now(),
+        date: DateTime(2023, 3, 07),
         title: "Night homework",
         description:
             "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum ",
         noteNumber: 3),
     Note(
-        date: DateTime.now(),
+        date: DateTime(2022, 12, 24),
         title: "Lorem ipsum lorem lorem lorem",
         description:
             "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum ",
         noteNumber: 4)
   ];
-  // bool adjuster(int index) {
-  //   if (index % 4 == 0 || index % 4 == 3) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
 
   get getIndex => notes.length;
   void addNote(TextEditingController title, TextEditingController description,
