@@ -16,6 +16,7 @@ class AddNoteScreen extends StatelessWidget {
         new TextEditingController();
     final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
     final GlobalKey<FormState> _descriptionFormKey = new GlobalKey<FormState>();
+    DateTime? _date;
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -24,6 +25,7 @@ class AddNoteScreen extends StatelessWidget {
             child: Form(
               key: _formKey,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
@@ -80,12 +82,30 @@ class AddNoteScreen extends StatelessWidget {
                       }
                     },
                     textAlign: TextAlign.start,
-                    minLines: 24,
+                    minLines: 1,
                     maxLines: 24,
                     decoration: const InputDecoration(
                         border: OutlineInputBorder(borderSide: BorderSide()),
                         hintText: "description",
                         hintStyle: TextStyle()),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  OutlinedButton(
+                    onPressed: () async {
+                      _date = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime(2050, 12, 31));
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.all(15.0),
+                      child: Text("Choose Date",
+                          style: TextStyle(
+                              color: AppColors.blueColor, fontSize: 25)),
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -97,8 +117,9 @@ class AddNoteScreen extends StatelessWidget {
                             if (!_formKey.currentState!.validate()) {
                               return;
                             }
-                            data.addNote(
-                                titleController, descriptionController);
+                            data.addNote(titleController, descriptionController,
+                                _date ?? DateTime.now());
+                            print(_date);
                             Navigator.pop(context);
                           }),
                           child: Container(

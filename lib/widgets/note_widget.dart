@@ -88,9 +88,20 @@ class NoteWidget extends StatelessWidget {
                 ),
                 Text(
                   currentNote.description,
-                  maxLines: isLong ? 8 : 5,
+                  maxLines: isLong ? 7 : 4,
                   style: descriptionStyle,
                 ),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      data.dateFormat(currentNote.date),
+                      textAlign: TextAlign.end,
+                      style: dateStyle,
+                    ),
+                  ],
+                )
               ],
             ),
           ),

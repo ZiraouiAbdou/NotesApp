@@ -40,7 +40,8 @@ class MainPage extends StatelessWidget {
                       currentNote: Note(
                           title: data.notes[index].title,
                           description: data.notes[index].description,
-                          noteNumber: index + 1),
+                          noteNumber: index + 1,
+                          date: data.notes[index].date),
                       //checking the container position to adjust the max lines of
                       //each container to avoid overflow
                       isLong: (index % 4 == 0 || index % 4 == 3),
