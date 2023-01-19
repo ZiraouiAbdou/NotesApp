@@ -162,10 +162,9 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                                   descriptionController.text,
                                   _date!.millisecondsSinceEpoch,
                                   widget.note.noteNumber);
+                            } else {
+                              return;
                             }
-                            print(titleController.text);
-                            // print(widget.note.noteNumber);
-
                             Navigator.pop(context);
                           },
                           child: Container(
