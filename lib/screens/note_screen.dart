@@ -62,6 +62,7 @@ class NoteScreen extends StatelessWidget {
                               children: [
                                 IconButton(
                                   onPressed: () {
+                                    print(snapshot.data!.first["_id"]);
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -79,11 +80,6 @@ class NoteScreen extends StatelessWidget {
                                   onPressed: () async {
                                     Navigator.pop(context);
                                     await value.deleteNote(note.noteNumber);
-                                    // .then(
-                                    //   (value) {
-                                    //     Navigator.pop(context);
-                                    //   },
-                                    // );
                                   },
                                   icon: const Icon(
                                     Icons.delete,

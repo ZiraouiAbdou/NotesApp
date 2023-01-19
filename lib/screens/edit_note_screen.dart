@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_new
 
 import 'package:flutter/material.dart';
-import 'package:notes_app/databse/db_helper.dart';
+
 import 'package:notes_app/models/note.dart';
 import 'package:notes_app/controller/db_controller.dart';
 import 'package:notes_app/utils/colors.dart';
@@ -30,7 +30,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
   void initState() {
     titleController.text = widget.note.title;
     descriptionController.text = widget.note.description;
-    titleController.text = widget.note.title;
+
     _date = widget.note.date;
     super.initState();
   }
@@ -156,13 +156,16 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                     builder: (BuildContext context, data, Widget? child) {
                       return InkWell(
                           onTap: () async {
-                            if (!_formKey.currentState!.validate()) {
+                            if (_formKey.currentState!.validate()) {
                               await data.updateNote(
                                   titleController.text,
                                   descriptionController.text,
                                   _date!.millisecondsSinceEpoch,
                                   widget.note.noteNumber);
                             }
+                            print(titleController.text);
+                            // print(widget.note.noteNumber);
+
                             Navigator.pop(context);
                           },
                           child: Container(

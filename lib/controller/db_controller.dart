@@ -42,9 +42,10 @@ class NoteData extends ChangeNotifier {
            UPDATE  ${ColumnNotes.tableName}
            SET ${ColumnNotes.titleColumn}="$title",
                ${ColumnNotes.descriptionColumn}="$description",
-               ${ColumnNotes.dateColumn}=$date
-           WHERE _id=$id;
+               ${ColumnNotes.dateColumn}="$date"
+           WHERE (_id="$id");
            """);
+    print(response);
     notifyListeners();
     return response;
   }
@@ -67,6 +68,7 @@ class NoteData extends ChangeNotifier {
                              "$title","$description","$date"
                             )
                             """);
+    print(response);
     return response;
   }
 
