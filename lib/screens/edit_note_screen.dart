@@ -2,22 +2,41 @@
 
 import 'package:flutter/material.dart';
 import 'package:notes_app/databse/db_helper.dart';
+import 'package:notes_app/models/note.dart';
 import 'package:notes_app/controller/db_controller.dart';
 import 'package:notes_app/utils/colors.dart';
 import 'package:notes_app/utils/date_format.dart';
 import 'package:notes_app/utils/styles.dart';
 import 'package:provider/provider.dart';
 
-class AddNoteScreen extends StatelessWidget {
-  const AddNoteScreen({Key? key}) : super(key: key);
+class EditNoteScreen extends StatefulWidget {
+  final Note note;
+
+  const EditNoteScreen({Key? key, required this.note}) : super(key: key);
+
+  @override
+  State<EditNoteScreen> createState() => _EditNoteScreenState();
+}
+
+class _EditNoteScreenState extends State<EditNoteScreen> {
+  DateTime? _date;
+  final TextEditingController titleController = new TextEditingController();
+
+  final TextEditingController descriptionController =
+      new TextEditingController();
+
+  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  @override
+  void initState() {
+    titleController.text = widget.note.title;
+    descriptionController.text = widget.note.description;
+    titleController.text = widget.note.title;
+    _date = widget.note.date;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController titleController = new TextEditingController();
-    final TextEditingController descriptionController =
-        new TextEditingController();
-    final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-    DateTime? _date = DateTime.now();
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -51,7 +70,6 @@ class AddNoteScreen extends StatelessWidget {
                           ))
                     ],
                   ),
-
                   const SizedBox(
                     height: 40,
                   ),
@@ -74,7 +92,6 @@ class AddNoteScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  // ignore: prefer_const_constructors
                   TextFormField(
                     style: const TextStyle(color: Colors.white54),
                     controller: descriptionController,
@@ -106,7 +123,7 @@ class AddNoteScreen extends StatelessWidget {
                               firstDate: DateTime.now(),
                               lastDate:
                                   DateTime(DateTime.now().year + 5, 12, 31));
-                          _date ??= DateTime.now();
+                          _date ??= widget.note.date;
                         },
                         child: const Padding(
                           padding: EdgeInsets.all(15.0),
@@ -135,21 +152,19 @@ class AddNoteScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-
                   Consumer<NoteData>(
                     builder: (BuildContext context, data, Widget? child) {
                       return InkWell(
-                          onTap: (() async {
+                          onTap: () async {
                             if (!_formKey.currentState!.validate()) {
-                              return;
+                              await data.updateNote(
+                                  titleController.text,
+                                  descriptionController.text,
+                                  _date!.millisecondsSinceEpoch,
+                                  widget.note.noteNumber);
                             }
-                            data.insertNote(
-                                titleController.text,
-                                descriptionController.text,
-                                _date!.millisecondsSinceEpoch);
-
                             Navigator.pop(context);
-                          }),
+                          },
                           child: Container(
                             height: 50,
                             width: double.infinity,
@@ -159,7 +174,7 @@ class AddNoteScreen extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                "Add Note",
+                                "Save",
                                 style: addNoteStyle,
                               ),
                             ),

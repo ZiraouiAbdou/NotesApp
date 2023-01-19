@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/provider.dart';
+import 'package:notes_app/controller/db_controller.dart';
 import 'package:notes_app/routes/app_routes.dart';
+import 'package:notes_app/utils/colors.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -17,8 +18,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+            scaffoldBackgroundColor: AppColors.mainColorTheme,
+            primarySwatch: Colors.blue,
+            appBarTheme:
+                const AppBarTheme(backgroundColor: AppColors.addNotePageColor),
+            iconTheme: const IconThemeData(color: Colors.white54)),
         routes: routes,
       ),
     );

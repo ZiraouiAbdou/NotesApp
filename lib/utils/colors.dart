@@ -6,4 +6,8 @@ class AppColors {
   static const countColor = Color(0xffA51D48);
   static const floatingActionButtonColor = Color(0xffA51D48);
   static const blueColor = Color(0xff011CBC);
+  static const lightBlue = Color(0xffA8D9FA);
+  static const mainColorTheme = Color(0xff333F46);
+  static const lightYellow = Color(0xffFCE89D);
+  static const addNotePageColor = Color(0xffF1F6F5);
 }
