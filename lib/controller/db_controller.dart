@@ -60,14 +60,14 @@ class NoteData extends ChangeNotifier {
 
   Future<int> insertNote(String title, String description, int date) async {
     int response = await myDB.insertData("""
-                            INSERT INTO ${ColumnNotes.tableName}
-                            (
-                              ${ColumnNotes.titleColumn},${ColumnNotes.descriptionColumn},${ColumnNotes.dateColumn}
-                              )
-                            VALUES (
-                             "$title","$description","$date"
-                            )
-                            """);
+          INSERT INTO ${ColumnNotes.tableName}
+          (
+            ${ColumnNotes.titleColumn},${ColumnNotes.descriptionColumn},${ColumnNotes.dateColumn}
+            )
+          VALUES (
+           "$title","$description","$date"
+          )
+          """);
     print(response);
     return response;
   }

@@ -82,8 +82,9 @@ class MainPage extends StatelessWidget {
                                       )))
                                   .toList(),
                               onChanged: (item) {
-                                context.select<NoteData, void>(
-                                    (value) => value.changeSelectedItem(item));
+                                context
+                                    .read<NoteData>()
+                                    .changeSelectedItem(item);
                               },
                             ),
                           ),
